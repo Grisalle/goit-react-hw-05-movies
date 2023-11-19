@@ -1,79 +1,29 @@
-import { Component } from 'react';
-import { nanoid } from 'nanoid';
-import { ContactForm } from './ContactForm/ContactForm';
-import { ContactList } from './ContactList/ContactList';
-import { Search } from './Search/Search';
-import css from './App.module.css';
+import { Route, Routes } from 'react-router-dom';
+import { lazy } from 'react';
+import { SharedLayout } from './SharedLayout/SharedLayout';
 
-export class App extends Component {
-  state = {
-    contacts: [
-      { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-      { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
-      { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-      { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
-    ],
+const HomePage = lazy(() => import('../pages/HomePage/HomePage'));
+const MoviesPage = lazy(() => import('../pages/MoviesPage/MoviesPage'));
+const MovieDetails = lazy(() => import('../pages/MovieDetails/MovieDetails'));
+const MoviesActors = lazy(() =>
+  import('../pages/MovieDetails/MoviesActors/MoviesActors')
+);
+const MovieReviews = lazy(() =>
+  import('../pages/MovieDetails/MoviesReviews/MoviesReviews')
+);
 
-    filter: '',
-  };
-
-  handleDeleteUser = id => {
-    if (window.confirm('Are you sure?')) {
-      this.setState({
-        contacts: [...this.state.contacts.filter(user => user.id !== id)],
-      });
-    }
-  };
-
-  createUser = data => {
-    this.setState({
-      contacts: [
-        ...this.state.contacts,
-        { name: data.name, id: nanoid(), number: data.number },
-      ],
-    });
-  };
-
-  handlerSearch = e => {
-    this.setState({ filter: e.currentTarget.value });
-  };
-
-  componentDidMount() {
-    const contacts = localStorage.getItem('contacts');
-    const parsedContacts = JSON.parse(contacts);
-
-    if (parsedContacts) {
-      this.setState({ contacts: parsedContacts });
-    }
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    if (this.state.contacts !== prevState.contacts) {
-      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
-    }
-  }
-
-  render() {
-    return (
-      <section className="section">
-        <div className="container">
-          <h1 className={css.title}>Phone book</h1>
-          <ContactForm
-            createUser={this.createUser}
-            userNumber={this.state.number}
-            userName={this.state.name}
-            contacts={this.state.contacts}
-          />
-          <h2 className={css.contactsTitle}>Contacts</h2>
-          <p className={css.search}>Find contacts by name</p>
-          <Search onChange={this.handlerSearch} value={this.state.filter} />
-          <ContactList
-            handleDeleteUser={this.handleDeleteUser}
-            contacts={this.state.contacts}
-            filter={this.state.filter}
-          />
-        </div>
-      </section>
-    );
-  }
-}
+export const App = () => {
+  return (
+    <Routes>
+      <Route path="/" element={<SharedLayout />}>
+        <Route index element={<HomePage />} />
+        <Route path="/movies" element={<MoviesPage />} />
+        <Route path="/movies/:movieId" element={<MovieDetails />}>
+          <Route path="cast" element={<MoviesActors />} />
+          <Route path="reviews" element={<MovieReviews />} />
+        </Route>
+        <Route path="*" element={<HomePage />} />
+      </Route>
+    </Routes>
+  );
+};
