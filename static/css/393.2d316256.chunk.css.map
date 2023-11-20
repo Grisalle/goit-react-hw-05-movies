@@ -1,0 +1,1 @@
+{"version":3,"file":"static/css/393.2d316256.chunk.css","mappings":"AAAA,kCACI,YAAa,CACb,qBAAsB,CACtB,QACJ,CAEA,8BACI,cACJ","sources":["pages/MovieDetails/MoviesReviews/MoviesReviews.module.css"],"sourcesContent":[".reviewsList {\n    display: flex;\n    flex-direction: column;\n    gap: 24px;\n}\n\n.content {\n    margin-top: 4px;\n}"],"names":[],"sourceRoot":""}
