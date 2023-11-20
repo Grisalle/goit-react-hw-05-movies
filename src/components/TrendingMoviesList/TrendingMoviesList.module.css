@@ -1,0 +1,22 @@
+.moviesList {
+    margin-top: 20px;
+    padding-left: 20px;
+    list-style: disc;
+}
+
+.moviesItem {
+    color: brown;
+}
+
+.moviesItem:not(:first-child) {
+    margin-top: 8px;
+}
+
+.moviesLink {
+    color: #2E2F42;
+}
+
+.moviesLink:hover,
+.moviesLink:focus {
+    color: #4D5AE5;
+}

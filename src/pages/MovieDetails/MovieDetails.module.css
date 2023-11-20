@@ -1,0 +1,60 @@
+.btnGB {
+    display: block;
+    padding: 8px 16px;
+    min-width: 120px;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: 0.04em;
+    color: #fff;
+    cursor: pointer;
+    background-color: #4D5AE5;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+    border: none;
+    border-radius: 4px;
+}
+
+.btnGB:hover,
+.btnGB:focus {
+    background-color: brown;
+}
+
+.wrapper {
+    display: flex;
+    gap: 24px;
+}
+
+.desc {
+    margin-top: 4px;
+}
+
+.descGenres {
+    margin-top: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.title {
+    margin-top: 16px;
+}
+
+.addInfoList {
+    padding-left: 20px;
+    list-style: disc;
+}
+
+.addInfoItem {
+    color: brown;
+}
+
+.addInfo {
+    margin-top: 8px;
+    display: block;
+    color: #2E2F42;
+}
+
+.addInfo:hover,
+.addInfo:focus {
+    color: #4D5AE5;
+}

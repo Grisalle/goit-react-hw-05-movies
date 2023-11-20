@@ -1,0 +1,20 @@
+.actorsList {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.actorContainer {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+}
+
+.actorName {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.actorCharacter {
+    margin-top: 8px;
+}

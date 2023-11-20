@@ -21,15 +21,20 @@ const HomePage = () => {
           setLoading(false);
         });
     };
+
     fetchTrendingFilms();
   }, []);
 
   return (
     <main>
-      <h1>Trending today</h1>
-      <TrendingMoviesList films={films} />
+      <section className="section">
+        <div className="container">
+          <h1>Trending today</h1>
+          <TrendingMoviesList films={films} />
 
-      {loading && <div>Loading...</div>}
+          {loading && <div>Loading...</div>}
+        </div>
+      </section>
     </main>
   );
 };

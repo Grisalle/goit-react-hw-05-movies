@@ -41,45 +41,47 @@ const MoviesPage = () => {
   }, [queryValue]);
 
   return (
-    <div>
-      <form onSubmit={onFormSubmit} className={css.form}>
-        <label className={css.label}>
-          <input
-            name="moviesName"
-            type="text"
-            autoComplete="off"
-            autoFocus
-            placeholder="Search movies"
-            className={css.input}
-          />
-        </label>
-        <button type="submit" className={css.btnSearch}>
-          <span>Search</span>
-        </button>
-      </form>
-      <div>
-        {loading && <div>Loading...</div>}
-        {error !== null && (
-          <p>There is no movies with this request. Please, try again</p>
-        )}
-        <ul className={css.moviesSearchList}>
-          {searchFilms !== 0 &&
-            searchFilms.map(film => {
-              return (
-                <li key={film.id} className={css.moviesSearchItem}>
-                  <Link
-                    state={{ from: location }}
-                    to={`/movies/${film.id}`}
-                    className={css.moviesSearchLink}
-                  >
-                    {film.title}
-                  </Link>
-                </li>
-              );
-            })}
-        </ul>
+    <section className="section">
+      <div className="container">
+        <form onSubmit={onFormSubmit} className={css.form}>
+          <label className={css.label}>
+            <input
+              name="moviesName"
+              type="text"
+              autoComplete="off"
+              autoFocus
+              placeholder="Search movies"
+              className={css.input}
+            />
+          </label>
+          <button type="submit" className={css.btnSearch}>
+            <span>Search</span>
+          </button>
+        </form>
+        <div className={css.moviesList}>
+          {loading && <div>Loading...</div>}
+          {error !== null && (
+            <p>There is no movies with this request. Please, try again</p>
+          )}
+          <ul className={css.moviesSearchList}>
+            {searchFilms !== 0 &&
+              searchFilms.map(film => {
+                return (
+                  <li key={film.id} className={css.moviesSearchItem}>
+                    <Link
+                      state={{ from: location }}
+                      to={`/movies/${film.id}`}
+                      className={css.moviesSearchLink}
+                    >
+                      {film.title}
+                    </Link>
+                  </li>
+                );
+              })}
+          </ul>
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 
